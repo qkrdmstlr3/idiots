@@ -1,10 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import AlbumPage from './components/PageAlbum';
 import AuthPage from './components/PageAuth';
 import HomePage from './components/PageHome';
 import PrivateRoute from './components/PrivateRoute';
 import * as routes from './routes';
-import { fireStore } from './utils/firebase';
 
 function App() {
   return (
@@ -16,6 +16,15 @@ function App() {
           <PrivateRoute
             element={<HomePage />}
             generatePath={routes.generateHomePath}
+          />
+        }
+      />
+      <Route
+        path={routes.albumPath}
+        element={
+          <PrivateRoute
+            element={<AlbumPage />}
+            generatePath={routes.generateAlbumPath}
           />
         }
       />
