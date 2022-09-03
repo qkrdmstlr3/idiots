@@ -1,5 +1,35 @@
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { uploadAlbumImages } from '../apis/image';
+
 const PageAlbum: React.FC = () => {
-  return <div>Album</div>;
+  const params = useParams();
+  const [images, setImages] = useState<FileList | null>();
+
+  const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files;
+    setImages(file);
+  };
+
+  const onUploadImage = () => {
+    if (!images || !params.albumId) return;
+    uploadAlbumImages({ albumId: params.albumId, images });
+  };
+
+  return (
+    <div>
+      <label htmlFor="input-image">이미지 선택</label>
+      <input
+        id="input-image"
+        accept="image/*"
+        multiple
+        type="file"
+        onChange={uploadImage}
+      />
+      <button onClick={onUploadImage}>이미지 업로드</button>
+    </div>
+  );
 };
 
 export default PageAlbum;
