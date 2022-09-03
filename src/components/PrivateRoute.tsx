@@ -24,7 +24,7 @@ const PrivateRoute: React.FC<PrivateRoutProps> = (props) => {
 
   const authenticateUser = useCallback(async () => {
     const token = localStorage.getPassword();
-    if (!token) navigateAuthPage();
+    if (token !== 'password') navigateAuthPage();
   }, [navigateAuthPage]);
 
   useEffect(() => {
