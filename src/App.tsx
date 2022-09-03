@@ -4,6 +4,7 @@ import AuthPage from './components/PageAuth';
 import HomePage from './components/PageHome';
 import PrivateRoute from './components/PrivateRoute';
 import * as routes from './routes';
+import { fireStore } from './utils/firebase';
 
 function App() {
   return (
