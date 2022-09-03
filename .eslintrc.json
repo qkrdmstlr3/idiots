@@ -20,6 +20,7 @@
     "no-undef": 0,
     "no-shadow": "off",
     "no-unused-vars": "off",
+    "no-use-before-define": "off",
     "import/no-unresolved": 0,
     "import/prefer-default-export": 0,
     "import/no-extraneous-dependencies": 0,

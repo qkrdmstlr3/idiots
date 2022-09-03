@@ -1,3 +1,5 @@
+import { styled } from '@stitches/react';
+import { rem } from 'polished';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -28,9 +30,13 @@ const PageAlbum: React.FC = () => {
 
   return (
     <div>
-      {urls.map((url) => (
-        <img key={url} src={url} />
-      ))}
+      <ImageList>
+        {urls.map((url) => (
+          <ImageItem key={url}>
+            <Image src={url} />
+          </ImageItem>
+        ))}
+      </ImageList>
       <label htmlFor="input-image">이미지 선택</label>
       <input
         id="input-image"
@@ -43,5 +49,32 @@ const PageAlbum: React.FC = () => {
     </div>
   );
 };
+
+const ImageList = styled('ul', {
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginLeft: '-1.3%',
+});
+
+const ImageItem = styled('li', {
+  position: 'relative',
+  flex: '1 0 32%',
+  maxWidth: '32%',
+  marginLeft: '1.3%',
+  marginBottom: '1.3%',
+
+  '&:after': {
+    display: 'block',
+    content: '',
+    paddingBottom: '100%',
+  },
+});
+
+const Image = styled('img', {
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+});
 
 export default PageAlbum;
