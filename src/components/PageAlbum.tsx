@@ -29,7 +29,7 @@ const PageAlbum: React.FC = () => {
   return (
     <div>
       {urls.map((url) => (
-        <img src={url} />
+        <img key={url} src={url} />
       ))}
       <label htmlFor="input-image">이미지 선택</label>
       <input

@@ -8,7 +8,7 @@ interface TransitionProps {
 }
 
 function Transition({ children, isOn, timeout = 500 }: TransitionProps) {
-  const timerRef = useRef<number>();
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
   const [status, setStatus] = useState<StatusType>(isOn ? 'on' : 'off');
 
   const onTransitionEnd = useCallback(() => {
