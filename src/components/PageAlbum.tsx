@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { uploadAlbumImages } from '../apis/image';
+import { getAlbumImages, uploadAlbumImages } from '../apis/image';
 
 const PageAlbum: React.FC = () => {
   const params = useParams();
+  const [urls, setUrls] = useState<string[]>([]);
   const [images, setImages] = useState<FileList | null>();
 
   const uploadImage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,8 +18,19 @@ const PageAlbum: React.FC = () => {
     uploadAlbumImages({ albumId: params.albumId, images });
   };
 
+  useEffect(() => {
+    (async () => {
+      if (!params.albumId) return;
+      const urls = await getAlbumImages({ albumId: params.albumId });
+      setUrls(urls);
+    })();
+  }, []);
+
   return (
     <div>
+      {urls.map((url) => (
+        <img src={url} />
+      ))}
       <label htmlFor="input-image">이미지 선택</label>
       <input
         id="input-image"
