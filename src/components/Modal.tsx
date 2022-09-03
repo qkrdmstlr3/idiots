@@ -1,6 +1,9 @@
+import { styled } from '@stitches/react';
+import { rem } from 'polished';
 import ReactDOM from 'react-dom';
 
 import useKeyboard from '../hooks/useKeyboard';
+import * as animations from '../styles/keyframes';
 import Transition from '../utils/Transition';
 
 const ANIMATION_DURATION = 150;
@@ -72,11 +75,11 @@ const ModalWrapper = ({
   return (
     <ModalPortal>
       <Transition isOn={isOpen} timeout={ANIMATION_DURATION}>
-        {() => (
-          <div>
-            <div onClick={closeModal} />
-            <section>{children}</section>
-          </div>
+        {(status) => (
+          <ModalContainerStyle useModal={status !== 'off'}>
+            <Overlay onClick={closeModal} useModal={isOpen} />
+            <ModalContent useModal={isOpen}>{children}</ModalContent>
+          </ModalContainerStyle>
         )}
       </Transition>
     </ModalPortal>
@@ -91,6 +94,69 @@ const Modal = Object.assign(ModalContainer, {
   CloseButton: ModalCloseButton,
   CancelButton: ModalCancelButton,
   ConfirmButton: ModalConfirmButton,
+});
+
+/**
+ * style
+ */
+const ModalContainerStyle = styled('div', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  height: '100%',
+
+  variants: {
+    useModal: {
+      true: { display: 'flex' },
+      false: { display: 'none' },
+    },
+  },
+});
+
+const Overlay = styled('div', {
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  width: '100%',
+  height: '100%',
+  opacity: 0.3,
+  backgroundColor: 'Black',
+
+  variants: {
+    useModal: {
+      true: {
+        animation: `${animations.fadeIn(0.3)} ${ANIMATION_DURATION}ms`,
+      },
+      false: {
+        animation: `${animations.fadeOut(0.3)} ${ANIMATION_DURATION}ms`,
+      },
+    },
+  },
+});
+
+const ModalContent = styled('div', {
+  padding: rem(15),
+  backgroundColor: 'White',
+  zIndex: 100,
+
+  variants: {
+    useModal: {
+      true: {
+        animation: `${animations.fadeIn(1)} ${ANIMATION_DURATION}ms, ${
+          animations.scaleUp
+        } ${ANIMATION_DURATION}ms`,
+      },
+      false: {
+        animation: `${animations.fadeOut(1)} ${ANIMATION_DURATION}ms, ${
+          animations.scaleDown
+        } ${ANIMATION_DURATION}ms`,
+      },
+    },
+  },
 });
 
 export default Modal;
