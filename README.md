@@ -1,5 +1,11 @@
 # IDIOTS
 
+### 새로운 도전
+
+- firebase
+- stitches
+- 파일 깊이 1단계
+
 ### TODO List
 
 - [x] 폴더 생성

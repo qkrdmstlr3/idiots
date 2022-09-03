@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
             ["@types/eslint", "npm:7.29.0"],\
             ["@types/prettier", "npm:2.7.0"],\
             ["@types/react", "npm:18.0.18"],\
@@ -48,6 +49,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:4.2.1"],\
             ["eslint-plugin-simple-import-sort", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:7.0.0"],\
             ["firebase", "npm:9.9.4"],\
+            ["polished", "npm:4.2.2"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:18.2.0"],\
@@ -1830,6 +1832,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@protobufjs-utf8-npm-1.1.0-02c590807c-f9bf3163d1.zip/node_modules/@protobufjs/utf8/",\
           "packageDependencies": [\
             ["@protobufjs/utf8", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@stitches/react", [\
+        ["npm:1.2.8", {\
+          "packageLocation": "./.yarn/cache/@stitches-react-npm-1.2.8-445a1042b8-029795323c.zip/node_modules/@stitches/react/",\
+          "packageDependencies": [\
+            ["@stitches/react", "npm:1.2.8"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8", {\
+          "packageLocation": "./.yarn/__virtual__/@stitches-react-virtual-23e0628483/0/cache/@stitches-react-npm-1.2.8-445a1042b8-029795323c.zip/node_modules/@stitches/react/",\
+          "packageDependencies": [\
+            ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
+            ["@types/react", "npm:18.0.18"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4114,6 +4138,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["idiots", "workspace:."],\
+            ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
             ["@types/eslint", "npm:7.29.0"],\
             ["@types/prettier", "npm:2.7.0"],\
             ["@types/react", "npm:18.0.18"],\
@@ -4129,6 +4154,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:4.2.1"],\
             ["eslint-plugin-simple-import-sort", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:7.0.0"],\
             ["firebase", "npm:9.9.4"],\
+            ["polished", "npm:4.2.2"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:18.2.0"],\
@@ -5125,6 +5151,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/picomatch-npm-2.3.1-c782cfd986-050c865ce8.zip/node_modules/picomatch/",\
           "packageDependencies": [\
             ["picomatch", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["polished", [\
+        ["npm:4.2.2", {\
+          "packageLocation": "./.yarn/cache/polished-npm-4.2.2-eb3d423b8d-97fb927dc5.zip/node_modules/polished/",\
+          "packageDependencies": [\
+            ["polished", "npm:4.2.2"],\
+            ["@babel/runtime", "npm:7.18.9"]\
           ],\
           "linkType": "HARD"\
         }]\
