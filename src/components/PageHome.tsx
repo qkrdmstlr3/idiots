@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
 import { getAlbumList } from '../apis/album';
+import { useModalDispatch } from '../contexts/ModalContext';
+import ModalCreateAlbum from './ModalCreateAlbum';
 
 interface AlbumType {
   id: string;
@@ -9,6 +11,7 @@ interface AlbumType {
 
 const PageHome: React.FC = () => {
   const [albums, setAlbums] = useState<AlbumType[]>([]);
+  const dispatch = useModalDispatch();
 
   useEffect(() => {
     (async () => {
@@ -17,7 +20,12 @@ const PageHome: React.FC = () => {
     })();
   }, []);
 
-  const onAddingAlbum = () => {};
+  const onAddingAlbum = () => {
+    dispatch({
+      type: 'OPEN_MODAL',
+      Component: ModalCreateAlbum,
+    });
+  };
 
   return (
     <>
