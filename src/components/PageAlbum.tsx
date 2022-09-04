@@ -11,7 +11,7 @@ const PageAlbum: React.FC = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
   const [percentage, setPercentage] = useState(0);
-  const [useCarousel, setUseCarousel] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const updatePercentage = (progress: number) => {
     setPercentage((prev) => Math.min(prev + progress, 100));
@@ -35,7 +35,7 @@ const PageAlbum: React.FC = () => {
     setPercentage(0);
   };
 
-  const toggleCarouselMode = () => setUseCarousel((prev) => !prev);
+  const selectImageIndex = (index: number | null) => setSelectedIndex(index);
 
   useEffect(() => {
     (async () => {
@@ -45,18 +45,24 @@ const PageAlbum: React.FC = () => {
     })();
   }, []);
 
+  const useModalOpen = typeof selectedIndex === 'number';
+  const carouselUrls =
+    selectedIndex === null
+      ? []
+      : [...urls.slice(selectedIndex), ...urls.slice(0, selectedIndex)];
+
   return (
     <div>
       {
         <ComponentCarousel
-          urls={urls}
-          useModalOpen={useCarousel}
-          closeModal={toggleCarouselMode}
+          urls={carouselUrls}
+          useModalOpen={useModalOpen}
+          closeModal={() => selectImageIndex(null)}
         />
       }
       <ImageList>
-        {urls.map((url) => (
-          <ImageItem key={url} onClick={toggleCarouselMode}>
+        {urls.map((url, index) => (
+          <ImageItem key={url} onClick={() => selectImageIndex(index)}>
             <Image src={url} />
           </ImageItem>
         ))}
