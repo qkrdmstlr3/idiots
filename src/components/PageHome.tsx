@@ -7,6 +7,7 @@ import { getAlbumList } from '../apis/album';
 import { useModalDispatch } from '../contexts/ModalContext';
 import { generateAlbumPath } from '../routes';
 import { albumImageUrlList } from '../utils/constant';
+import sortByKey from '../utils/sortByKey';
 import ModalCreateAlbum from './ModalCreateAlbum';
 
 interface AlbumType {
@@ -22,7 +23,7 @@ const PageHome: React.FC = () => {
   useEffect(() => {
     (async () => {
       const albums = await getAlbumList();
-      // TODO: sort
+      sortByKey(albums, 'name');
       setAlbums(albums);
     })();
   }, []);
