@@ -1,9 +1,9 @@
-import { styled } from '@stitches/react';
 import { rem } from 'polished';
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import { homePath } from '../routes';
+import { styled } from '../styles/stitches';
 import localStorage from '../utils/localStorage';
 
 interface UseLocation {

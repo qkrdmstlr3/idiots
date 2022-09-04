@@ -1,8 +1,9 @@
 import 'react-circular-progressbar/dist/styles.css';
 
-import { styled } from '@stitches/react';
 import { rem } from 'polished';
 import { CircularProgressbar } from 'react-circular-progressbar';
+
+import { styled } from '../styles/stitches';
 
 interface ComponentPercentageProps {
   percentage: number;

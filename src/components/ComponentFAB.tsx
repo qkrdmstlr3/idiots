@@ -1,6 +1,7 @@
-import { styled } from '@stitches/react';
 import { rem } from 'polished';
 import { useState } from 'react';
+
+import { styled } from '../styles/stitches';
 
 interface ComponentFABProps {
   onUploadImage: (images: FileList) => void;

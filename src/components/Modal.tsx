@@ -1,9 +1,9 @@
-import { styled } from '@stitches/react';
 import { rem } from 'polished';
 import ReactDOM from 'react-dom';
 
 import useKeyboard from '../hooks/useKeyboard';
 import * as animations from '../styles/keyframes';
+import { styled } from '../styles/stitches';
 import Transition from '../utils/Transition';
 
 const ANIMATION_DURATION = 150;

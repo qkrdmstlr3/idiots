@@ -1,8 +1,8 @@
-import { styled } from '@stitches/react';
 import { rem } from 'polished';
 import { useState } from 'react';
 
 import { ModalInterface } from '../contexts/ModalContext';
+import { styled } from '../styles/stitches';
 
 const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
   const [albumName, setAlbumName] = useState('');
