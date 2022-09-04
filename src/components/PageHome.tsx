@@ -1,11 +1,11 @@
-import { styled } from '@stitches/react';
-import { rem } from 'polished';
+import { rem, rgba } from 'polished';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { addNewAlbum, getAlbumList } from '../apis/album';
 import { useModalDispatch } from '../contexts/ModalContext';
 import { generateAlbumPath } from '../routes';
+import { styled } from '../styles/stitches';
 import { albumImageUrlList } from '../utils/constant';
 import sortByKey from '../utils/sortByKey';
 import ModalCreateAlbum from './ModalCreateAlbum';
@@ -71,6 +71,18 @@ const AlbumList = styled('ul', {
   display: 'flex',
   flexWrap: 'wrap',
   marginLeft: '-1.3%',
+
+  '@bp1': {
+    marginLeft: '-1%',
+  },
+
+  '@bp3': {
+    marginLeft: '-2%',
+  },
+
+  '@bp4': {
+    marginLeft: '-2.2%',
+  },
 });
 
 const AlbumItem = styled('li', {
@@ -79,6 +91,27 @@ const AlbumItem = styled('li', {
   maxWidth: '32%',
   marginLeft: '1.3%',
   marginBottom: '1.3%',
+
+  '@bp1': {
+    flex: '1 0 24%',
+    maxWidth: '24%',
+    marginLeft: '1%',
+    marginBottom: '1%',
+  },
+
+  '@bp3': {
+    flex: '1 0 18%',
+    maxWidth: '18%',
+    marginLeft: '2%',
+    marginBottom: '2%',
+  },
+
+  '@bp4': {
+    flex: '1 0 12%',
+    maxWidth: '12%',
+    marginLeft: '2.2%',
+    marginBottom: '2.2%',
+  },
 
   '&:after': {
     display: 'block',
@@ -95,8 +128,13 @@ const AlbumImage = styled('img', {
 });
 
 const AlbumTitle = styled('span', {
+  width: '100%',
   position: 'absolute',
   bottom: 0,
+  textAlign: 'center',
+  borderRadius: rem(3),
+  backgroundColor: rgba(0, 0, 0, 0.3),
+  color: 'White',
 });
 
 const AddAlbumButton = styled('button', {
