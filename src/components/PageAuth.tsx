@@ -44,10 +44,10 @@ const PageAuth: React.FC = () => {
   return (
     <Wrapper>
       <Logo src="/images/logo.png" />
-      <form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit}>
         <Input type="password" onChange={onChangePW} />
-      </form>
-      <SubmitButton>입장하기</SubmitButton>
+        <SubmitButton>입장하기</SubmitButton>
+      </Form>
     </Wrapper>
   );
 };
@@ -55,6 +55,14 @@ const PageAuth: React.FC = () => {
 const Wrapper = styled('div', {
   width: '100%',
   height: '100%',
+  display: 'flex',
+  gap: rem(5),
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+});
+
+const Form = styled('form', {
   display: 'flex',
   gap: rem(5),
   justifyContent: 'center',
