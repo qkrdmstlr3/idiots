@@ -39,11 +39,14 @@ const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
 };
 
 const Form = styled('form', {
+  padding: rem(15),
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
   gap: rem(10),
+
+  backgroundColor: 'White',
 });
 
 const Input = styled('input', {

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { getAlbumImages, uploadAlbumImages } from '../apis/image';
 import { styled } from '../styles/stitches';
+import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
 import ComponentPercentage from './ComponentPercentage';
 
@@ -10,6 +11,7 @@ const PageAlbum: React.FC = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
   const [percentage, setPercentage] = useState(0);
+  const [useCarousel, setUseCarousel] = useState(false);
 
   const updatePercentage = (progress: number) => {
     setPercentage((prev) => Math.min(prev + progress, 100));
@@ -33,6 +35,8 @@ const PageAlbum: React.FC = () => {
     setPercentage(0);
   };
 
+  const toggleCarouselMode = () => setUseCarousel((prev) => !prev);
+
   useEffect(() => {
     (async () => {
       if (!params.albumId) return;
@@ -43,9 +47,16 @@ const PageAlbum: React.FC = () => {
 
   return (
     <div>
+      {
+        <ComponentCarousel
+          urls={urls}
+          useModalOpen={useCarousel}
+          closeModal={toggleCarouselMode}
+        />
+      }
       <ImageList>
         {urls.map((url) => (
-          <ImageItem key={url}>
+          <ImageItem key={url} onClick={toggleCarouselMode}>
             <Image src={url} />
           </ImageItem>
         ))}
@@ -89,6 +100,7 @@ const ImageItem = styled('li', {
   maxWidth: '32%',
   marginLeft: '1.3%',
   marginBottom: '1.3%',
+  cursor: 'pointer',
 
   '@bp1': {
     flex: '1 0 24%',

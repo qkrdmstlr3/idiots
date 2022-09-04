@@ -91,6 +91,7 @@ const AlbumItem = styled('li', {
   maxWidth: '32%',
   marginLeft: '1.3%',
   marginBottom: '1.3%',
+  cursor: 'pointer',
 
   '@bp1': {
     flex: '1 0 24%',

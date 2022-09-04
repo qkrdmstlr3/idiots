@@ -64,6 +64,7 @@ const UploadImageLabel = styled('label', {
   alignItems: 'center',
   borderRadius: '50%',
   backgroundColor: 'Gray',
+  color: 'White',
 });
 
 const UploadImageInput = styled('input', {
