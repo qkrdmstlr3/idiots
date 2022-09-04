@@ -32,5 +32,5 @@ const pwaOptions: Partial<VitePWAOptions> = {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePWA(pwaOptions)],
+  plugins: [react(), VitePWA({ ...pwaOptions, registerType: 'autoUpdate' })],
 });
