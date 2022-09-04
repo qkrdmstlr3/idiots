@@ -4,7 +4,7 @@ import ModalGlobal from '../components/ModalGlobal';
 
 export interface ModalInterface {
   targetId?: string;
-  onConfirm?: (param: any) => void;
+  onConfirm?: (param: any) => void | Promise<void>;
   closeModal: () => void;
 }
 type Component = (props: ModalInterface) => JSX.Element | null;

@@ -2,7 +2,6 @@ import { styled } from '@stitches/react';
 import { rem } from 'polished';
 import { useState } from 'react';
 
-import { addNewAlbum } from '../apis/album';
 import { ModalInterface } from '../contexts/ModalContext';
 
 const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
@@ -17,15 +16,13 @@ const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
     if (!albumName.length) throw Error('입력해주세요');
   };
 
-  const onSubmit = (event: React.FormEvent) => {
+  const onSubmit = async (event: React.FormEvent) => {
     try {
       event.preventDefault();
 
       if (!props.onConfirm) return;
       checkAlbumName();
-      props.onConfirm(albumName);
-
-      addNewAlbum({ name: albumName });
+      await props.onConfirm(albumName);
       props.closeModal();
     } catch (error) {
       setErrorMsg((error as Error).message);

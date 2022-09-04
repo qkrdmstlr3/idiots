@@ -3,7 +3,7 @@ import { rem } from 'polished';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getAlbumList } from '../apis/album';
+import { addNewAlbum, getAlbumList } from '../apis/album';
 import { useModalDispatch } from '../contexts/ModalContext';
 import { generateAlbumPath } from '../routes';
 import { albumImageUrlList } from '../utils/constant';
@@ -28,9 +28,13 @@ const PageHome: React.FC = () => {
     })();
   }, []);
 
-  const checkAlbumNameDuplicated = (name: string) => {
+  const checkAlbumNameDuplicated = async (name: string) => {
     if (albums.some((album) => album.name === name))
       throw Error('중복된 이름이야');
+    const album = await addNewAlbum({ name });
+    const newAlbums = [...albums, { id: album.id, name }];
+    sortByKey(newAlbums, 'name');
+    setAlbums(newAlbums);
   };
 
   const onAddingAlbum = () => {
