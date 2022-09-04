@@ -28,10 +28,16 @@ const PageHome: React.FC = () => {
     })();
   }, []);
 
+  const checkAlbumNameDuplicated = (name: string) => {
+    if (albums.some((album) => album.name === name))
+      throw Error('중복된 이름이야');
+  };
+
   const onAddingAlbum = () => {
     dispatch({
       type: 'OPEN_MODAL',
       Component: ModalCreateAlbum,
+      onConfirm: checkAlbumNameDuplicated,
     });
   };
 

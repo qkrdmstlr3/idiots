@@ -4,7 +4,7 @@ import ModalGlobal from '../components/ModalGlobal';
 
 export interface ModalInterface {
   targetId?: string;
-  onConfirm?: () => void;
+  onConfirm?: (param: any) => void;
   closeModal: () => void;
 }
 type Component = (props: ModalInterface) => JSX.Element | null;
@@ -12,7 +12,7 @@ type State = {
   targetId: string;
   isModalOpen: boolean;
   ModalComponent: Component | null;
-  onConfirm?: () => void;
+  onConfirm?: (param: any) => void;
   closeModal?: () => void;
 };
 
@@ -22,7 +22,7 @@ type Action =
       Component: Component;
       targetId?: string;
       closeModal?: () => void;
-      onConfirm?: () => void;
+      onConfirm?: (param: any) => void;
     }
   | { type: 'CLOSE_MODAL' };
 

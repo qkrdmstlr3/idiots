@@ -1,3 +1,5 @@
+import { styled } from '@stitches/react';
+import { rem } from 'polished';
 import { useState } from 'react';
 
 import { addNewAlbum } from '../apis/album';
@@ -5,24 +7,56 @@ import { ModalInterface } from '../contexts/ModalContext';
 
 const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
   const [albumName, setAlbumName] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const onChangeAlbumName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAlbumName(event.target.value);
   };
 
-  const onSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+  const checkAlbumName = () => {
+    if (!albumName.length) throw Error('입력해주세요');
+  };
 
-    addNewAlbum({ name: albumName });
-    props.closeModal();
+  const onSubmit = (event: React.FormEvent) => {
+    try {
+      event.preventDefault();
+
+      if (!props.onConfirm) return;
+      checkAlbumName();
+      props.onConfirm(albumName);
+
+      addNewAlbum({ name: albumName });
+      props.closeModal();
+    } catch (error) {
+      setErrorMsg((error as Error).message);
+    }
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <input value={albumName} onChange={onChangeAlbumName} />
-      <button>생성하기</button>
-    </form>
+    <Form onSubmit={onSubmit}>
+      <Input value={albumName} onChange={onChangeAlbumName} />
+      <Button>생성하기</Button>
+      <span>{errorMsg}</span>
+    </Form>
   );
 };
+
+const Form = styled('form', {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  flexDirection: 'column',
+  gap: rem(10),
+});
+
+const Input = styled('input', {
+  width: rem(270),
+  height: rem(36),
+});
+
+const Button = styled('button', {
+  width: rem(270),
+  height: rem(36),
+});
 
 export default ModalCreateAlbum;

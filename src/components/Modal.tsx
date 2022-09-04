@@ -140,6 +140,7 @@ const Overlay = styled('div', {
 
 const ModalContent = styled('div', {
   padding: rem(15),
+  borderRadius: rem(5),
   backgroundColor: 'White',
   zIndex: 100,
 
