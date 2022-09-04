@@ -15,7 +15,7 @@ const useCheckingPW = () => {
   const navigate = useNavigate();
 
   const checkPassword = (pw: string) => {
-    if (pw === 'password') {
+    if (pw === import.meta.env.VITE_PASSWORD) {
       localStorage.setPassword(pw);
       navigate(location?.path || homePath);
     }

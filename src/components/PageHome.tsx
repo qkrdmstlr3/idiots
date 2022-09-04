@@ -49,7 +49,7 @@ const PageHome: React.FC = () => {
     navigate(generateAlbumPath({ albumId }));
 
   const getAlbumImage = (index: number) => {
-    return albumImageUrlList[index % 5];
+    return albumImageUrlList[index % 6];
   };
 
   return (
