@@ -21,14 +21,12 @@ const PageAlbum: React.FC = () => {
 
   const onUploadImage = async (images: FileList) => {
     if (!images || !params.albumId) return;
-    setPercentage(1);
     await uploadAlbumImages({
       images,
       addUrl,
       updatePercentage,
       albumId: params.albumId,
     });
-    setPercentage(100);
   };
 
   const clickButton = () => {

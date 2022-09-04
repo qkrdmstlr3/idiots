@@ -24,6 +24,7 @@ export const uploadAlbumImages = async ({
   addUrl,
   updatePercentage,
 }: UploadAlbumImages) => {
+  updatePercentage(1);
   await Promise.all(
     Array.from(images).map(async (i, index) => {
       const imgId = String(Date.now()) + i.name;
@@ -39,7 +40,7 @@ export const uploadAlbumImages = async ({
         () => {},
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then(addUrl);
-          updatePercentage(100 / images.length);
+          updatePercentage(Math.ceil(100 / images.length));
         },
       );
     }),
