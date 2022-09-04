@@ -8,10 +8,24 @@ import ComponentFAB from './ComponentFAB';
 const PageAlbum: React.FC = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
+  const [percentage, setPercentage] = useState(0);
 
-  const onUploadImage = (images: FileList) => {
+  const updatePercentage = (progress: number) => {
+    setPercentage((prev) => prev + progress);
+  };
+
+  const addUrl = (url: string) => {
+    setUrls((prev) => [...prev, url]);
+  };
+
+  const onUploadImage = async (images: FileList) => {
     if (!images || !params.albumId) return;
-    uploadAlbumImages({ albumId: params.albumId, images });
+    await uploadAlbumImages({
+      images,
+      addUrl,
+      updatePercentage,
+      albumId: params.albumId,
+    });
   };
 
   useEffect(() => {

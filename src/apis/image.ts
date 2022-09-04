@@ -10,23 +10,38 @@ import { fireStorage } from '../utils/firebase';
 interface UploadAlbumImages {
   albumId: string;
   images: FileList;
+  addUrl: (url: string) => void;
+  updatePercentage: (progress: number) => void;
 }
 
 interface GetAlbumImages {
   albumId: string;
 }
 
-// https://www.makeuseof.com/upload-files-to-firebase-using-reactjs/
-// https://velog.io/@dev-hannahk/react-firebase-crud#-firestore-storage%EC%97%90-%ED%8C%8C%EC%9D%BC-%EC%97%85%EB%A1%9C%EB%93%9C-%EB%B0%8F-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C
 export const uploadAlbumImages = async ({
   images,
   albumId,
+  addUrl,
+  updatePercentage,
 }: UploadAlbumImages) => {
   await Promise.all(
-    Array.from(images).map(async (i) => {
-      const imgId = String(Date.now());
+    Array.from(images).map(async (i, index) => {
+      const imgId = String(Date.now()) + i.name;
       const newImg = ref(fireStorage, `${albumId}/${imgId}`);
       uploadBytesResumable(newImg, i);
+
+      const storageRef = ref(fireStorage, `${albumId}/${imgId}`);
+      const uploadTask = uploadBytesResumable(storageRef, i);
+
+      uploadTask.on(
+        'state_changed',
+        () => {},
+        () => {},
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then(addUrl);
+          updatePercentage(100 / images.length);
+        },
+      );
     }),
   );
 };
