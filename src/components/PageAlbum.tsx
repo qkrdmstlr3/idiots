@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { getAlbumImages, uploadAlbumImages } from '../apis/image';
 import ComponentFAB from './ComponentFAB';
+import ComponentPercentage from './ComponentPercentage';
 
 const PageAlbum: React.FC = () => {
   const params = useParams();
@@ -11,7 +12,7 @@ const PageAlbum: React.FC = () => {
   const [percentage, setPercentage] = useState(0);
 
   const updatePercentage = (progress: number) => {
-    setPercentage((prev) => prev + progress);
+    setPercentage((prev) => Math.min(prev + progress, 100));
   };
 
   const addUrl = (url: string) => {
@@ -20,12 +21,18 @@ const PageAlbum: React.FC = () => {
 
   const onUploadImage = async (images: FileList) => {
     if (!images || !params.albumId) return;
+    setPercentage(1);
     await uploadAlbumImages({
       images,
       addUrl,
       updatePercentage,
       albumId: params.albumId,
     });
+    setPercentage(100);
+  };
+
+  const clickButton = () => {
+    setPercentage(0);
   };
 
   useEffect(() => {
@@ -45,7 +52,14 @@ const PageAlbum: React.FC = () => {
           </ImageItem>
         ))}
       </ImageList>
-      <ComponentFAB onUploadImage={onUploadImage} />
+      {percentage ? (
+        <ComponentPercentage
+          percentage={percentage}
+          arriveFullPercentage={clickButton}
+        />
+      ) : (
+        <ComponentFAB onUploadImage={onUploadImage} />
+      )}
     </div>
   );
 };

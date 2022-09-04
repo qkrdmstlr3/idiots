@@ -52,6 +52,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["polished", "npm:4.2.2"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
+            ["react-circular-progressbar", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:2.1.0"],\
             ["react-dom", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:18.2.0"],\
             ["react-router-dom", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:6.3.0"],\
             ["typescript", "patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"],\
@@ -6398,6 +6399,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["polished", "npm:4.2.2"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
+            ["react-circular-progressbar", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:2.1.0"],\
             ["react-dom", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:18.2.0"],\
             ["react-router-dom", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:6.3.0"],\
             ["typescript", "patch:typescript@npm%3A4.8.2#~builtin<compat/typescript>::version=4.8.2&hash=a1c5e5"],\
@@ -7728,6 +7730,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["react", "npm:18.2.0"],\
             ["loose-envify", "npm:1.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["react-circular-progressbar", [\
+        ["npm:2.1.0", {\
+          "packageLocation": "./.yarn/cache/react-circular-progressbar-npm-2.1.0-11ab1459b1-dc118010a8.zip/node_modules/react-circular-progressbar/",\
+          "packageDependencies": [\
+            ["react-circular-progressbar", "npm:2.1.0"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:2.1.0", {\
+          "packageLocation": "./.yarn/__virtual__/react-circular-progressbar-virtual-38641c9d8c/0/cache/react-circular-progressbar-npm-2.1.0-11ab1459b1-dc118010a8.zip/node_modules/react-circular-progressbar/",\
+          "packageDependencies": [\
+            ["react-circular-progressbar", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:2.1.0"],\
+            ["@types/react", "npm:18.0.18"],\
+            ["react", "npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react",\
+            "react"\
           ],\
           "linkType": "HARD"\
         }]\
