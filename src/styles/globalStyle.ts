@@ -26,4 +26,7 @@ export default globalCss({
     borderRadius: rem(3),
     cursor: 'pointer',
   },
+  input: {
+    paddingLeft: rem(10),
+  },
 });

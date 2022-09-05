@@ -1,3 +1,4 @@
+import { vars } from '@seed-design/design-token';
 import { keyframes } from '@stitches/react';
 import { rem } from 'polished';
 
@@ -41,4 +42,20 @@ export const scaleUp = keyframes({
 export const scaleDown = keyframes({
   '0%': { transform: 'scale(1)' },
   '100%': { transform: 'scale(0.2)' },
+});
+
+export const errorAnim = keyframes({
+  '0%': { color: 'White' },
+  '30%': {
+    backgroundColor: vars.$scale.color.red500,
+    outline: vars.$scale.color.red500,
+    border: `1px solid ${vars.$scale.color.red500}`,
+  },
+  '70%': {
+    color: 'White',
+    backgroundColor: vars.$scale.color.red500,
+    outline: vars.$scale.color.red500,
+    border: `1px solid ${vars.$scale.color.red500}`,
+  },
+  '100%': { color: 'White' },
 });

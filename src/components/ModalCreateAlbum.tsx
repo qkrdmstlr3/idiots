@@ -1,8 +1,11 @@
+import { vars } from '@seed-design/design-token';
 import { rem } from 'polished';
 import { useState } from 'react';
 
 import { ModalInterface } from '../contexts/ModalContext';
-import { styled } from '../styles/stitches';
+import { errorAnim } from '../styles/keyframes';
+import { keyframes, styled } from '../styles/stitches';
+import { Button as CreateAlbumButton } from '../styles/Template';
 
 const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
   const [albumName, setAlbumName] = useState('');
@@ -31,32 +34,61 @@ const ModalCreateAlbum: React.FC<ModalInterface> = (props) => {
 
   return (
     <Form onSubmit={onSubmit}>
-      <Input value={albumName} onChange={onChangeAlbumName} />
-      <Button>생성하기</Button>
-      <span>{errorMsg}</span>
+      <Title>앨범 만들기</Title>
+      <Input
+        autoFocus
+        placeholder="앨범 이름을 입력해줘"
+        value={albumName}
+        onChange={onChangeAlbumName}
+        useErrorMode={!!errorMsg}
+      />
+      <CreateAlbumButton theme="primary" position="relative">
+        만들기
+      </CreateAlbumButton>
+      <Error>{errorMsg} </Error>
     </Form>
   );
 };
 
 const Form = styled('form', {
-  padding: rem(15),
+  width: rem(300),
+  position: 'relative',
+  padding: `${rem(15)} 0`,
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
   gap: rem(10),
+  borderRadius: rem(3),
 
   backgroundColor: 'White',
 });
 
-const Input = styled('input', {
-  width: rem(270),
-  height: rem(36),
+const Title = styled('h2', {
+  margin: 0,
+  fontSize: rem(20),
 });
 
-const Button = styled('button', {
-  width: rem(270),
+const Input = styled('input', {
+  width: '90%',
   height: rem(36),
+  outlineColor: vars.$scale.color.blue500,
+  transition: 'all 500ms',
+  borderRadius: rem(3),
+
+  variants: {
+    useErrorMode: {
+      true: {
+        animation: `${errorAnim} 1s linear`,
+      },
+    },
+  },
+});
+
+const Error = styled('span', {
+  height: rem(20),
+  color: vars.$scale.color.red500,
+  fontSize: rem(15),
 });
 
 export default ModalCreateAlbum;

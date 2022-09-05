@@ -4,9 +4,6 @@ import { rem } from 'polished';
 import { styled } from './stitches';
 
 export const Button = styled('button', {
-  bottom: rem(20),
-  left: '50%',
-  transform: 'translateX(-50%)',
   width: '90%',
   height: rem(40),
   fontWeight: 'bolder',
@@ -33,9 +30,15 @@ export const Button = styled('button', {
     position: {
       fixed: {
         position: 'fixed',
+        bottom: rem(20),
+        left: '50%',
+        transform: 'translateX(-50%)',
       },
       absolute: {
         position: 'absolute',
+        bottom: rem(20),
+        left: '50%',
+        transform: 'translateX(-50%)',
       },
       relative: {
         position: 'relative',
