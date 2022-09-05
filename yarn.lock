@@ -2180,6 +2180,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@seed-design/design-token@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@seed-design/design-token@npm:1.0.0"
+  checksum: b1e82bd0f0dead5ca477c5420e871a25e0955eb06a7f1c46a2201d10312ca7c02796850a5c56b6347eb8b88d9b31e63d5c0191e14b40a4b1c59348b23b2e9739
+  languageName: node
+  linkType: hard
+
+"@seed-design/stylesheet@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@seed-design/stylesheet@npm:1.0.0"
+  checksum: e7ce951e6f906c033605980f5669b1fcbe607f48670f2fa510fe253c4bba6b170c676af180fcbf5a04084a41aaf58d173164572b1fd1209c96fdff10b546bdd1
+  languageName: node
+  linkType: hard
+
 "@stitches/react@npm:^1.2.8":
   version: 1.2.8
   resolution: "@stitches/react@npm:1.2.8"
@@ -4234,6 +4248,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "idiots@workspace:."
   dependencies:
+    "@seed-design/design-token": ^1.0.0
+    "@seed-design/stylesheet": ^1.0.0
     "@stitches/react": ^1.2.8
     "@types/eslint": ^7
     "@types/prettier": ^2

@@ -1,3 +1,5 @@
+import '@seed-design/stylesheet/global.css';
+
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 import AlbumPage from './components/PageAlbum';

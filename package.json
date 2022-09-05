@@ -6,6 +6,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@seed-design/design-token": "^1.0.0",
+    "@seed-design/stylesheet": "^1.0.0",
     "@stitches/react": "^1.2.8",
     "firebase": "^9.9.4",
     "polished": "^4.2.2",

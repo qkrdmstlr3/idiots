@@ -33,6 +33,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@seed-design/design-token", "npm:1.0.0"],\
+            ["@seed-design/stylesheet", "npm:1.0.0"],\
             ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
             ["@types/eslint", "npm:7.29.0"],\
             ["@types/prettier", "npm:2.7.0"],\
@@ -3815,6 +3817,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@seed-design/design-token", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/@seed-design-design-token-npm-1.0.0-ee158bb189-b1e82bd0f0.zip/node_modules/@seed-design/design-token/",\
+          "packageDependencies": [\
+            ["@seed-design/design-token", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@seed-design/stylesheet", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/@seed-design-stylesheet-npm-1.0.0-bcbebabdbe-e7ce951e6f.zip/node_modules/@seed-design/stylesheet/",\
+          "packageDependencies": [\
+            ["@seed-design/stylesheet", "npm:1.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@stitches/react", [\
         ["npm:1.2.8", {\
           "packageLocation": "./.yarn/cache/@stitches-react-npm-1.2.8-445a1042b8-029795323c.zip/node_modules/@stitches/react/",\
@@ -6390,6 +6410,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["idiots", "workspace:."],\
+            ["@seed-design/design-token", "npm:1.0.0"],\
+            ["@seed-design/stylesheet", "npm:1.0.0"],\
             ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
             ["@types/eslint", "npm:7.29.0"],\
             ["@types/prettier", "npm:2.7.0"],\
