@@ -1,11 +1,13 @@
+import { rem } from 'polished';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import {
   downloadAlbumImages,
   getAlbumImages,
   uploadAlbumImages,
 } from '../apis/image';
+import { homePath } from '../routes';
 import { styled } from '../styles/stitches';
 import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
@@ -14,6 +16,8 @@ import ComponentPercentage from './ComponentPercentage';
 const PageAlbum: React.FC = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
+  const [useSelectMode, setUseSelectMode] = useState(false);
+  const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
   const [percentage, setPercentage] = useState(0);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -41,6 +45,22 @@ const PageAlbum: React.FC = () => {
 
   const selectImageIndex = (index: number | null) => setSelectedIndex(index);
 
+  const selectImage = (url: string) => {
+    const updatedUrls = selectedUrls.includes(url)
+      ? selectedUrls.filter((selectedUrl) => selectedUrl !== url)
+      : [...selectedUrls, url];
+    setSelectedUrls(updatedUrls);
+  };
+
+  const toggleSelectMode = () => {
+    if (useSelectMode) setSelectedUrls([]);
+    setUseSelectMode((prev) => !prev);
+  };
+
+  const onDownload = () => {
+    downloadAlbumImages(selectedUrls);
+  };
+
   useEffect(() => {
     (async () => {
       if (!params.albumId) return;
@@ -55,10 +75,6 @@ const PageAlbum: React.FC = () => {
       ? []
       : [...urls.slice(selectedIndex), ...urls.slice(0, selectedIndex)];
 
-  const onDownload = () => {
-    downloadAlbumImages(urls);
-  };
-
   return (
     <div>
       {
@@ -68,10 +84,27 @@ const PageAlbum: React.FC = () => {
           closeModal={() => selectImageIndex(null)}
         />
       }
-      <button onClick={onDownload}>download</button>
+      <Header>
+        <Link to={homePath}>뒤로가기</Link>
+        <div>
+          {useSelectMode ? (
+            <>
+              <button onClick={onDownload}>{selectedUrls.length}장 다운</button>
+              <button onClick={toggleSelectMode}>취소</button>
+            </>
+          ) : (
+            <button onClick={toggleSelectMode}>선택</button>
+          )}
+        </div>
+      </Header>
       <ImageList>
         {urls.map((url, index) => (
-          <ImageItem key={url} onClick={() => selectImageIndex(index)}>
+          <ImageItem
+            key={url}
+            onClick={() =>
+              useSelectMode ? selectImage(url) : selectImageIndex(index)
+            }
+          >
             <Image src={url} />
           </ImageItem>
         ))}
@@ -150,6 +183,13 @@ const Image = styled('img', {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
+});
+
+const Header = styled('header', {
+  height: rem(30),
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 });
 
 export default PageAlbum;
