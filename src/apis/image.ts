@@ -47,6 +47,30 @@ export const uploadAlbumImages = async ({
   );
 };
 
+const getFilename = (url: string) => {
+  return url.split('?')[0].split('/').at(-1) || '';
+};
+
+export const downloadAlbumImages = async (urls: string[]) => {
+  urls.forEach((url) => {
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = () => {
+      const blob = xhr.response;
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = getFilename(url);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    };
+
+    xhr.open('GET', url);
+    xhr.send();
+  });
+};
+
 export const getAlbumImages = async ({ albumId }: GetAlbumImages) => {
   try {
     const li = (await listAll(ref(fireStorage, albumId))).items;

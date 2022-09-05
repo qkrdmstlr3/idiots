@@ -1,7 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getAlbumImages, uploadAlbumImages } from '../apis/image';
+import {
+  downloadAlbumImages,
+  getAlbumImages,
+  uploadAlbumImages,
+} from '../apis/image';
 import { styled } from '../styles/stitches';
 import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
@@ -51,6 +55,10 @@ const PageAlbum: React.FC = () => {
       ? []
       : [...urls.slice(selectedIndex), ...urls.slice(0, selectedIndex)];
 
+  const onDownload = () => {
+    downloadAlbumImages(urls);
+  };
+
   return (
     <div>
       {
@@ -60,6 +68,7 @@ const PageAlbum: React.FC = () => {
           closeModal={() => selectImageIndex(null)}
         />
       }
+      <button onClick={onDownload}>download</button>
       <ImageList>
         {urls.map((url, index) => (
           <ImageItem key={url} onClick={() => selectImageIndex(index)}>
