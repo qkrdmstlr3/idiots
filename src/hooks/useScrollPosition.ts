@@ -3,10 +3,13 @@ import { useEffect, useMemo, useState } from 'react';
 
 const THROTTLE_WAIT_MS = 100;
 
-const useScrollPosition = () => {
-  const [scrollPosition, setScrollPosition] = useState<number>(0);
+interface UseScrollPositionParams {
+  standard: number;
+}
 
-  const isScrollTop = useMemo(() => scrollPosition < 100, [scrollPosition]);
+const useScrollPosition = ({ standard }: UseScrollPositionParams) => {
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+  const isScrollTop = scrollPosition < standard;
 
   const updatePosition = throttle(() => {
     setScrollPosition(window.pageYOffset);

@@ -1,14 +1,13 @@
-import { rem } from 'polished';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import {
   downloadAlbumImages,
   getAlbumImages,
   uploadAlbumImages,
 } from '../apis/image';
-import { homePath } from '../routes';
 import { styled } from '../styles/stitches';
+import ComponentAlbumHeader from './ComponentAlbumHeader';
 import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
 import ComponentPercentage from './ComponentPercentage';
@@ -16,9 +15,9 @@ import ComponentPercentage from './ComponentPercentage';
 const PageAlbum: React.FC = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
-  const [useSelectMode, setUseSelectMode] = useState(false);
   const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
   const [percentage, setPercentage] = useState(0);
+  const [useSelectMode, setUseSelectMode] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const updatePercentage = (progress: number) => {
@@ -52,13 +51,13 @@ const PageAlbum: React.FC = () => {
     setSelectedUrls(updatedUrls);
   };
 
+  const onDownload = () => {
+    downloadAlbumImages(selectedUrls);
+  };
+
   const toggleSelectMode = () => {
     if (useSelectMode) setSelectedUrls([]);
     setUseSelectMode((prev) => !prev);
-  };
-
-  const onDownload = () => {
-    downloadAlbumImages(selectedUrls);
   };
 
   useEffect(() => {
@@ -84,19 +83,12 @@ const PageAlbum: React.FC = () => {
           closeModal={() => selectImageIndex(null)}
         />
       }
-      <Header>
-        <Link to={homePath}>뒤로가기</Link>
-        <div>
-          {useSelectMode ? (
-            <>
-              <button onClick={onDownload}>{selectedUrls.length}장 다운</button>
-              <button onClick={toggleSelectMode}>취소</button>
-            </>
-          ) : (
-            <button onClick={toggleSelectMode}>선택</button>
-          )}
-        </div>
-      </Header>
+      <ComponentAlbumHeader
+        selectedUrls={selectedUrls}
+        useSelectMode={useSelectMode}
+        onDownload={onDownload}
+        toggleSelectMode={toggleSelectMode}
+      />
       <ImageList>
         {urls.map((url, index) => (
           <ImageItem
@@ -183,13 +175,6 @@ const Image = styled('img', {
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-});
-
-const Header = styled('header', {
-  height: rem(30),
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
 });
 
 export default PageAlbum;
