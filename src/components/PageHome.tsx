@@ -90,6 +90,18 @@ const AlbumList = styled('ul', {
   },
 });
 
+const AlbumTitle = styled('span', {
+  width: '100%',
+  position: 'absolute',
+  bottom: 0,
+  textAlign: 'center',
+  borderRadius: rem(3),
+  backgroundColor: rgba(0, 0, 0, 0.5),
+  color: 'White',
+  wordBreak: 'keep-all',
+  transition: 'background-color .2s',
+});
+
 const AlbumItem = styled('li', {
   position: 'relative',
   flex: '1 0 32%',
@@ -97,6 +109,19 @@ const AlbumItem = styled('li', {
   marginLeft: '1.3%',
   marginBottom: '1.3%',
   cursor: 'pointer',
+  borderRadius: rem(3),
+  transition: 'transform .35s',
+
+  '&:hover': {
+    [`& ${AlbumTitle}`]: {
+      backgroundColor: vars.$scale.color.blue500,
+      opacity: 0.8,
+    },
+  },
+
+  '&:active': {
+    transform: 'scale(0.95)',
+  },
 
   '@bp1': {
     flex: '1 0 24%',
@@ -131,16 +156,6 @@ const AlbumImage = styled('img', {
   width: '100%',
   height: '100%',
   objectFit: 'scale-down',
-});
-
-const AlbumTitle = styled('span', {
-  width: '100%',
-  position: 'absolute',
-  bottom: 0,
-  textAlign: 'center',
-  borderRadius: rem(3),
-  backgroundColor: rgba(0, 0, 0, 0.3),
-  color: 'White',
 });
 
 export default PageHome;
