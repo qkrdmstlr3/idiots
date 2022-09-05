@@ -1,4 +1,5 @@
 import { globalCss } from '@stitches/react';
+import { rem } from 'polished';
 
 export default globalCss({
   'html, body, #root': {
@@ -19,5 +20,10 @@ export default globalCss({
   a: {
     textDecoration: 'none',
     color: 'inherit',
+  },
+  button: {
+    border: 'none',
+    borderRadius: rem(3),
+    cursor: 'pointer',
   },
 });

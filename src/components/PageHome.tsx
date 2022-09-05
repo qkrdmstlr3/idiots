@@ -1,3 +1,4 @@
+import { vars } from '@seed-design/design-token';
 import { rem, rgba } from 'polished';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +7,7 @@ import { addNewAlbum, getAlbumList } from '../apis/album';
 import { useModalDispatch } from '../contexts/ModalContext';
 import { generateAlbumPath } from '../routes';
 import { styled } from '../styles/stitches';
+import { Button as AddAlbumButton } from '../styles/Template';
 import { albumImageUrlList } from '../utils/constant';
 import sortByKey from '../utils/sortByKey';
 import ModalCreateAlbum from './ModalCreateAlbum';
@@ -62,7 +64,9 @@ const PageHome: React.FC = () => {
           </AlbumItem>
         ))}
       </AlbumList>
-      <AddAlbumButton onClick={onAddingAlbum}>앨범 추가</AddAlbumButton>
+      <AddAlbumButton theme="primary" position="fixed" onClick={onAddingAlbum}>
+        앨범 추가
+      </AddAlbumButton>
     </>
   );
 };
@@ -71,6 +75,7 @@ const AlbumList = styled('ul', {
   display: 'flex',
   flexWrap: 'wrap',
   marginLeft: '-1.3%',
+  padding: rem(10),
 
   '@bp1': {
     marginLeft: '-1%',
@@ -136,15 +141,6 @@ const AlbumTitle = styled('span', {
   borderRadius: rem(3),
   backgroundColor: rgba(0, 0, 0, 0.3),
   color: 'White',
-});
-
-const AddAlbumButton = styled('button', {
-  position: 'fixed',
-  bottom: rem(20),
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: rem(270),
-  height: rem(40),
 });
 
 export default PageHome;
