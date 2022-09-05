@@ -37,6 +37,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@seed-design/stylesheet", "npm:1.0.0"],\
             ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
             ["@types/eslint", "npm:7.29.0"],\
+            ["@types/lodash", "npm:4.14.184"],\
             ["@types/prettier", "npm:2.7.0"],\
             ["@types/react", "npm:18.0.18"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -51,6 +52,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:4.2.1"],\
             ["eslint-plugin-simple-import-sort", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:7.0.0"],\
             ["firebase", "npm:9.9.4"],\
+            ["lodash", "npm:4.17.21"],\
             ["polished", "npm:4.2.2"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
@@ -3935,6 +3937,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/lodash", [\
+        ["npm:4.14.184", {\
+          "packageLocation": "./.yarn/cache/@types-lodash-npm-4.14.184-aec91d64ae-6d9a4d67f7.zip/node_modules/@types/lodash/",\
+          "packageDependencies": [\
+            ["@types/lodash", "npm:4.14.184"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/long", [\
         ["npm:4.0.2", {\
           "packageLocation": "./.yarn/cache/@types-long-npm-4.0.2-e7bdc00dd4-d16cde7240.zip/node_modules/@types/long/",\
@@ -6414,6 +6425,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@seed-design/stylesheet", "npm:1.0.0"],\
             ["@stitches/react", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:1.2.8"],\
             ["@types/eslint", "npm:7.29.0"],\
+            ["@types/lodash", "npm:4.14.184"],\
             ["@types/prettier", "npm:2.7.0"],\
             ["@types/react", "npm:18.0.18"],\
             ["@types/react-dom", "npm:18.0.6"],\
@@ -6428,6 +6440,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-prettier", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:4.2.1"],\
             ["eslint-plugin-simple-import-sort", "virtual:b6b08dc57c3129656b9a0d8860799fc7d081cee2af85a099296dcf95957de5e297b2080559b8836b815df66ab49e37fa2fa48d87307bba9df33908a050ed7195#npm:7.0.0"],\
             ["firebase", "npm:9.9.4"],\
+            ["lodash", "npm:4.17.21"],\
             ["polished", "npm:4.2.2"],\
             ["prettier", "npm:2.7.1"],\
             ["react", "npm:18.2.0"],\
