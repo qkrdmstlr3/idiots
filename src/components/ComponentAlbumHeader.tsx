@@ -64,6 +64,10 @@ const SelectButton = styled('button', {
   padding: `${rem(3)} ${rem(10)}`,
   color: 'White',
   backgroundColor: vars.$scale.color.gray500,
+
+  '&:hover': {
+    backgroundColor: vars.$scale.color.gray400,
+  },
 });
 
 const ButtonWrapper = styled('div', {
