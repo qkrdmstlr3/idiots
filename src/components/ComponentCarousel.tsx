@@ -29,7 +29,9 @@ const ComponentCarousel: React.FC<ComponentCarouselProps> = (props) => {
 };
 
 const CarouselWrapper = styled('div', {
-  position: 'relative',
+  position: 'fixed',
+  top: 0,
+  left: 0,
   width: '100vw',
   height: '100vh',
   display: 'flex',
