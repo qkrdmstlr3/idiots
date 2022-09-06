@@ -115,6 +115,7 @@ const PageAlbum: React.FC = () => {
         {urls.map((url, index) => (
           <ImageItem
             key={url}
+            selected={selectedUrls.includes(url)}
             onClick={() =>
               useSelectMode ? selectImage(url) : selectImageIndex(index)
             }
@@ -163,6 +164,7 @@ const ImageItem = styled('li', {
   marginLeft: '1.3%',
   marginBottom: '1.3%',
   cursor: 'pointer',
+  transition: `transform .2s linear`,
 
   '@bp1': {
     flex: '1 0 24%',
@@ -189,6 +191,15 @@ const ImageItem = styled('li', {
     display: 'block',
     content: '',
     paddingBottom: '100%',
+  },
+
+  variants: {
+    selected: {
+      true: {
+        transform: `scale(0.9)`,
+        opacity: 0.5,
+      },
+    },
   },
 });
 
