@@ -12,9 +12,28 @@ import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
 import ComponentPercentage from './ComponentPercentage';
 
-const PageAlbum: React.FC = () => {
+const useUrls = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
+
+  const addUrl = (url: string) => {
+    setUrls((prev) => [...prev, url]);
+  };
+
+  useEffect(() => {
+    (async () => {
+      if (!params.albumId) return;
+      const urls = await getAlbumImages({ albumId: params.albumId });
+      setUrls(urls);
+    })();
+  }, []);
+
+  return { urls, addUrl };
+};
+
+const PageAlbum: React.FC = () => {
+  const params = useParams();
+  const { urls, addUrl } = useUrls();
   const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
   const [percentage, setPercentage] = useState(0);
   const [useSelectMode, setUseSelectMode] = useState(false);
@@ -22,10 +41,6 @@ const PageAlbum: React.FC = () => {
 
   const updatePercentage = (progress: number) => {
     setPercentage((prev) => Math.min(prev + progress, 100));
-  };
-
-  const addUrl = (url: string) => {
-    setUrls((prev) => [...prev, url]);
   };
 
   const onUploadImage = async (images: FileList) => {
@@ -59,14 +74,6 @@ const PageAlbum: React.FC = () => {
     if (useSelectMode) setSelectedUrls([]);
     setUseSelectMode((prev) => !prev);
   };
-
-  useEffect(() => {
-    (async () => {
-      if (!params.albumId) return;
-      const urls = await getAlbumImages({ albumId: params.albumId });
-      setUrls(urls);
-    })();
-  }, []);
 
   const useModalOpen = typeof selectedIndex === 'number';
   const carouselUrls =
