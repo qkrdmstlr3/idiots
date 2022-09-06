@@ -1,3 +1,4 @@
+import { vars } from '@seed-design/design-token';
 import { rem } from 'polished';
 import { Link } from 'react-router-dom';
 
@@ -18,18 +19,18 @@ const ComponentAlbumHeader: React.FC<ComponentAlbumHeaderProps> = (props) => {
   return (
     <Header useTopMode={isScrollTop}>
       <Link to={homePath}>{'⏎'}</Link>
-      <div>
+      <ButtonWrapper>
         {props.useSelectMode ? (
           <>
-            <button onClick={props.onDownload}>
+            <SelectButton onClick={props.onDownload}>
               {props.selectedUrls.length}장 다운
-            </button>
-            <button onClick={props.toggleSelectMode}>취소</button>
+            </SelectButton>
+            <SelectButton onClick={props.toggleSelectMode}>취소</SelectButton>
           </>
         ) : (
-          <button onClick={props.toggleSelectMode}>선택</button>
+          <SelectButton onClick={props.toggleSelectMode}>선택</SelectButton>
         )}
-      </div>
+      </ButtonWrapper>
     </Header>
   );
 };
@@ -44,7 +45,7 @@ const Header = styled('header', {
   zIndex: 10,
   transition: 'all 0.3s ease-in-out',
   padding: `0 ${rem(10)}`,
-  fontSize: rem(20),
+  fontSize: rem(25),
 
   variants: {
     useTopMode: {
@@ -52,10 +53,23 @@ const Header = styled('header', {
         backgroundColor: 'White',
       },
       false: {
-        backgroundColor: 'transparent',
+        color: 'White',
+        background: `linear-gradient(rgba(0,0,0,.5) 10%, rgba(0,0,0,0))`,
       },
     },
   },
+});
+
+const SelectButton = styled('button', {
+  padding: `${rem(3)} ${rem(10)}`,
+  color: 'White',
+  backgroundColor: vars.$scale.color.gray500,
+});
+
+const ButtonWrapper = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  gap: rem(10),
 });
 
 export default ComponentAlbumHeader;
