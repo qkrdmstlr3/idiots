@@ -12,6 +12,9 @@ import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
 import ComponentPercentage from './ComponentPercentage';
 
+/**
+ * hook
+ */
 const useUrls = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
@@ -31,12 +34,36 @@ const useUrls = () => {
   return { urls, addUrl };
 };
 
+const useCarousel = () => {};
+
+const useSelectedUrls = () => {
+  const [useSelectMode, setUseSelectMode] = useState(false);
+  const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
+
+  const selectImage = (url: string) => {
+    const updatedUrls = selectedUrls.includes(url)
+      ? selectedUrls.filter((selectedUrl) => selectedUrl !== url)
+      : [...selectedUrls, url];
+    setSelectedUrls(updatedUrls);
+  };
+
+  const toggleSelectMode = () => {
+    if (useSelectMode) setSelectedUrls([]);
+    setUseSelectMode((prev) => !prev);
+  };
+
+  return { useSelectMode, selectedUrls, selectImage, toggleSelectMode };
+};
+
+/**
+ * component
+ */
 const PageAlbum: React.FC = () => {
   const params = useParams();
   const { urls, addUrl } = useUrls();
-  const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
+  const { useSelectMode, selectedUrls, selectImage, toggleSelectMode } =
+    useSelectedUrls();
   const [percentage, setPercentage] = useState(0);
-  const [useSelectMode, setUseSelectMode] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   const updatePercentage = (progress: number) => {
@@ -59,20 +86,8 @@ const PageAlbum: React.FC = () => {
 
   const selectImageIndex = (index: number | null) => setSelectedIndex(index);
 
-  const selectImage = (url: string) => {
-    const updatedUrls = selectedUrls.includes(url)
-      ? selectedUrls.filter((selectedUrl) => selectedUrl !== url)
-      : [...selectedUrls, url];
-    setSelectedUrls(updatedUrls);
-  };
-
   const onDownload = () => {
     downloadAlbumImages(selectedUrls);
-  };
-
-  const toggleSelectMode = () => {
-    if (useSelectMode) setSelectedUrls([]);
-    setUseSelectMode((prev) => !prev);
   };
 
   const useModalOpen = typeof selectedIndex === 'number';
