@@ -1,7 +1,10 @@
+import { vars } from '@seed-design/design-token';
 import { rem } from 'polished';
 import { useState } from 'react';
 
+import { glitterAnim } from '../styles/keyframes';
 import { styled } from '../styles/stitches';
+import Icon from './ComponentIcon';
 
 interface ComponentFABProps {
   onUploadImage: (images: FileList) => void;
@@ -28,10 +31,16 @@ const ComponentFAB: React.FC<ComponentFABProps> = (props) => {
   return (
     <FABWrapper>
       {useFAB ? (
-        <UploadImageButton onClick={onUploadImage}>업로드</UploadImageButton>
+        <UploadImageButton onClick={onUploadImage}>
+          <ImageNumber>{images?.length}</ImageNumber>업로드
+        </UploadImageButton>
       ) : (
         <>
-          <UploadImageLabel htmlFor="input-image">사진</UploadImageLabel>
+          <UploadImageLabel htmlFor="input-image">
+            <IconWrapper>
+              <Icon icon="upload" />
+            </IconWrapper>
+          </UploadImageLabel>
           <UploadImageInput
             multiple
             id="input-image"
@@ -62,9 +71,19 @@ const UploadImageLabel = styled('label', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  border: `3px solid ${vars.$scale.color.blue500}`,
   borderRadius: '50%',
-  backgroundColor: 'Gray',
+  backgroundColor: 'White',
   color: 'White',
+  cursor: 'pointer',
+});
+
+const IconWrapper = styled('div', {
+  width: '50%',
+  height: '50%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 const UploadImageInput = styled('input', {
@@ -76,6 +95,23 @@ const UploadImageButton = styled('button', {
   width: '100%',
   height: '100%',
   borderRadius: '50%',
+  border: `3px solid ${vars.$scale.color.blue500}`,
+  backgroundColor: 'White',
+  animation: `${glitterAnim} 1.5s infinite`,
+});
+
+const ImageNumber = styled('div', {
+  position: 'absolute',
+  width: rem(30),
+  height: rem(30),
+  top: rem(-10),
+  left: rem(-10),
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  borderRadius: '50%',
+  color: 'White',
+  backgroundColor: vars.$scale.color.red500,
 });
 
 export default ComponentFAB;

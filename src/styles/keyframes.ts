@@ -59,3 +59,9 @@ export const errorAnim = keyframes({
   },
   '100%': { color: 'White' },
 });
+
+export const glitterAnim = keyframes({
+  '50%': {
+    backgroundColor: vars.$scale.color.blue300,
+  },
+});
