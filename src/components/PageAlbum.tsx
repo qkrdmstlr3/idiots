@@ -12,6 +12,10 @@ import ComponentCarousel from './ComponentCarousel';
 import ComponentFAB from './ComponentFAB';
 import ComponentPercentage from './ComponentPercentage';
 
+interface UseUploadImages {
+  addNewUrl: (url: string) => void;
+}
+
 /**
  * hook
  */
@@ -19,7 +23,7 @@ const useUrls = () => {
   const params = useParams();
   const [urls, setUrls] = useState<string[]>([]);
 
-  const addUrl = (url: string) => {
+  const addNewUrl = (url: string) => {
     setUrls((prev) => [...prev, url]);
   };
 
@@ -31,10 +35,17 @@ const useUrls = () => {
     })();
   }, []);
 
-  return { urls, addUrl };
+  return { urls, addNewUrl };
 };
 
-const useCarousel = () => {};
+const useCarousel = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const useCarouselMode = typeof selectedIndex === 'number';
+
+  const selectImageIndex = (index: number | null) => setSelectedIndex(index);
+
+  return { selectedIndex, useCarouselMode, selectImageIndex };
+};
 
 const useSelectedUrls = () => {
   const [useSelectMode, setUseSelectMode] = useState(false);
@@ -55,16 +66,13 @@ const useSelectedUrls = () => {
   return { useSelectMode, selectedUrls, selectImage, toggleSelectMode };
 };
 
-/**
- * component
- */
-const PageAlbum: React.FC = () => {
+const useUploadImages = ({ addNewUrl }: UseUploadImages) => {
   const params = useParams();
-  const { urls, addUrl } = useUrls();
-  const { useSelectMode, selectedUrls, selectImage, toggleSelectMode } =
-    useSelectedUrls();
   const [percentage, setPercentage] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const initPercentage = () => {
+    setPercentage(0);
+  };
 
   const updatePercentage = (progress: number) => {
     setPercentage((prev) => Math.min(prev + progress, 100));
@@ -74,41 +82,47 @@ const PageAlbum: React.FC = () => {
     if (!images || !params.albumId) return;
     await uploadAlbumImages({
       images,
-      addUrl,
       updatePercentage,
+      addUrl: addNewUrl,
       albumId: params.albumId,
     });
   };
 
-  const clickButton = () => {
-    setPercentage(0);
-  };
+  return { percentage, initPercentage, onUploadImage };
+};
 
-  const selectImageIndex = (index: number | null) => setSelectedIndex(index);
+/**
+ * component
+ */
+const PageAlbum: React.FC = () => {
+  const { urls, addNewUrl } = useUrls();
+  const { selectedIndex, useCarouselMode, selectImageIndex } = useCarousel();
+  const { useSelectMode, selectedUrls, selectImage, toggleSelectMode } =
+    useSelectedUrls();
+  const { percentage, initPercentage, onUploadImage } = useUploadImages({
+    addNewUrl,
+  });
 
-  const onDownload = () => {
+  const onDownloadImage = () => {
     downloadAlbumImages(selectedUrls);
   };
 
-  const useModalOpen = typeof selectedIndex === 'number';
   const carouselUrls =
     selectedIndex === null
       ? []
       : [...urls.slice(selectedIndex), ...urls.slice(0, selectedIndex)];
 
   return (
-    <div>
-      {
-        <ComponentCarousel
-          urls={carouselUrls}
-          useModalOpen={useModalOpen}
-          closeModal={() => selectImageIndex(null)}
-        />
-      }
+    <>
+      <ComponentCarousel
+        urls={carouselUrls}
+        useModalOpen={useCarouselMode}
+        closeModal={() => selectImageIndex(null)}
+      />
       <ComponentAlbumHeader
         selectedUrls={selectedUrls}
         useSelectMode={useSelectMode}
-        onDownload={onDownload}
+        onDownload={onDownloadImage}
         toggleSelectMode={toggleSelectMode}
       />
       <ImageList>
@@ -127,12 +141,12 @@ const PageAlbum: React.FC = () => {
       {percentage ? (
         <ComponentPercentage
           percentage={percentage}
-          arriveFullPercentage={clickButton}
+          arriveFullPercentage={initPercentage}
         />
       ) : (
         <ComponentFAB onUploadImage={onUploadImage} />
       )}
-    </div>
+    </>
   );
 };
 
