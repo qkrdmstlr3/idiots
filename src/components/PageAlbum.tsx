@@ -47,7 +47,7 @@ const useCarousel = () => {
   return { selectedIndex, useCarouselMode, selectImageIndex };
 };
 
-const useSelectedUrls = () => {
+const useDownloadImages = () => {
   const [useSelectMode, setUseSelectMode] = useState(false);
   const [selectedUrls, setSelectedUrls] = useState<string[]>([]);
 
@@ -63,7 +63,17 @@ const useSelectedUrls = () => {
     setUseSelectMode((prev) => !prev);
   };
 
-  return { useSelectMode, selectedUrls, selectImage, toggleSelectMode };
+  const onDownloadImage = () => {
+    downloadAlbumImages(selectedUrls);
+  };
+
+  return {
+    useSelectMode,
+    selectedUrls,
+    selectImage,
+    toggleSelectMode,
+    onDownloadImage,
+  };
 };
 
 const useUploadImages = ({ addNewUrl }: UseUploadImages) => {
@@ -97,15 +107,16 @@ const useUploadImages = ({ addNewUrl }: UseUploadImages) => {
 const PageAlbum: React.FC = () => {
   const { urls, addNewUrl } = useUrls();
   const { selectedIndex, useCarouselMode, selectImageIndex } = useCarousel();
-  const { useSelectMode, selectedUrls, selectImage, toggleSelectMode } =
-    useSelectedUrls();
   const { percentage, initPercentage, onUploadImage } = useUploadImages({
     addNewUrl,
   });
-
-  const onDownloadImage = () => {
-    downloadAlbumImages(selectedUrls);
-  };
+  const {
+    useSelectMode,
+    selectedUrls,
+    selectImage,
+    toggleSelectMode,
+    onDownloadImage,
+  } = useDownloadImages();
 
   const carouselUrls =
     selectedIndex === null
